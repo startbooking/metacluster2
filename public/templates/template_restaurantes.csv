@@ -1,0 +1,2 @@
+nombre*,tipo_cocina*,direccion*,latitud*,longitud*,telefono*,whatsapp,email,descripcion*,horario_apertura*,horario_cierre*,dias_atencion*,rango_precio*,capacidad,servicios,especialidades
+Restaurante Ejemplo,Tradicional Llanera,Carrera 30 #15-45,-4.1520,-73.6350,+57 8 2345678,+57 310 2345678,info@restaurante.com,"Restaurante de comida típica llanera con ambiente campestre y atención familiar",11:00,22:00,Lunes a Domingo,$$,120,"Delivery,Reservas,Parqueadero,Música en vivo","Mamona,Palo a Pique,Cachama,Ternera a la Llanera"

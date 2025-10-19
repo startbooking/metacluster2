@@ -5,7 +5,7 @@ Sistema integral de gestión turística para la ciudad de Villavicencio, Meta, C
 
 ## Información del Proyecto
 
-**URL del Proyecto**: https://lovable.dev/projects/3183fa27-e4d2-40b4-a2cb-e36d7ff54e55
+**URL del Proyecto**: https://cluster.sactel.cloud
 
 ## Descripción
 
@@ -71,7 +71,7 @@ La Plataforma Turística de Villavicencio es una aplicación web completa diseñ
 
 ```
 src/
-├── components/           # Componentes reutilizables
+├── components/          # Componentes reutilizables
 │   ├── admin/           # Componentes específicos del administrador
 │   ├── business-owner/  # Componentes del empresario
 │   ├── guest/           # Componentes del huésped
@@ -95,7 +95,7 @@ src/
 
 ### Prerrequisitos
 - Node.js (versión 16 o superior)
-- npm o yarn
+- npm
 
 ### Instalación
 
@@ -104,7 +104,7 @@ src/
 git clone <URL_DEL_REPOSITORIO>
 
 # Navegar al directorio del proyecto
-cd villavicencio-turismo
+cd metacluster
 
 # Instalar dependencias
 npm install
@@ -192,15 +192,9 @@ password: cliente123
 ## Despliegue
 
 ### Utilizando Lovable
-1. Abrir el [proyecto en Lovable](https://lovable.dev/projects/3183fa27-e4d2-40b4-a2cb-e36d7ff54e55)
+1. Abrir el [proyecto en Lovable](https://cluster.sactel.cloud)
 2. Hacer clic en "Share" → "Publish"
 3. La aplicación se desplegará automáticamente
-
-### Dominio Personalizado
-Para conectar un dominio personalizado:
-1. Ir a Project > Settings > Domains en Lovable
-2. Seguir las instrucciones para configurar DNS
-3. Se requiere un plan pagado de Lovable
 
 ## Base de Datos
 
@@ -217,10 +211,10 @@ La aplicación utiliza las siguientes entidades principales:
 ### Scripts SQL
 ```sql
 -- Ubicados en database/
-schema.sql              # Estructura de la base de datos
-seed_data.sql          # Datos de prueba
-i18n_schema.sql        # Esquema de internacionalización
-villavicencio_turismo_complete.sql  # Schema completo
+schema.sql        # Estructura de la base de datos
+seed_data.sql     # Datos de prueba
+i18n_schema.sql   # Esquema de internacionalización
+turismo_app.sql   # Schema completo
 ```
 
 ## Internacionalización
@@ -244,8 +238,8 @@ export const useTranslations = (language: string) => {
 ```javascript
 // capacitor.config.ts
 {
-  appId: 'com.villavicencio.turismo',
-  appName: 'Villavicencio Turismo',
+  appId: 'com.cluster.turismo',
+  appName: 'Cluster de Turismo Villavicencio y el Meta',
   webDir: 'dist',
   bundledWebRuntime: false
 }
@@ -275,19 +269,16 @@ export const useTranslations = (language: string) => {
 
 ### Enlaces Útiles
 - 📖 [Manual del Sistema](./src/pages/SystemManual.tsx)
-- 🔧 [Documentación de Lovable](https://docs.lovable.dev/)
-- 💬 [Discord de la Comunidad](https://discord.com/channels/1119885301872070706/1280461670979993613)
-- 🎥 [Tutoriales en Video](https://www.youtube.com/watch?v=9KHLTZaJcR8&list=PLbVHz4urQBZkJiAWdG8HWoJTdgEysigIO)
 
 ### Contacto
-- **Soporte Técnico**: soporte@villavicencio.com
-- **Capacitación**: capacitacion@villavicencio.com  
-- **Teléfono**: +57 8 123 4567
-- **WhatsApp**: +57 300 123 4567
+- **Soporte Técnico**: soporte@sactel.cloud
+- **Capacitación**: capacitacion@sactel.cloud 
+- **Teléfono**: +57 317 484 8930
+- **WhatsApp**: +57 320 697 6285
 
 ## Licencia
 
-Este proyecto está licenciado bajo los términos de la Alcaldía de Villavicencio para uso en la promoción turística de la ciudad.
+Este proyecto está licenciado bajo los términos del Cluser de Turismo Villavicencio y el Meta para uso en la promoción turística de la ciudad.
 
 ## Changelog
 
@@ -303,5 +294,5 @@ Este proyecto está licenciado bajo los términos de la Alcaldía de Villavicenc
 
 ---
 
-**Desarrollado con ❤️ para promover el turismo en Villavicencio, Meta, Colombia**
-# metacluster2
+**Desarrollado con ❤️ para promover el turismo en Villavicencio y el Meta, Colombia**
+# sactel

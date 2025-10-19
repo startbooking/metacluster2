@@ -1,0 +1,2 @@
+nombre*,categoria*,direccion*,latitud*,longitud*,telefono*,whatsapp*,email*,descripcion*,check_in*,check_out*,politica_cancelacion*,servicios,sitio_web,precio_desde
+Hotel Ejemplo,5,Calle 10 #5-20 Centro,-4.1533,-73.6346,+57 8 1234567,+57 300 1234567,contacto@hotel.com,"Hotel 5 estrellas en el corazón de Villavicencio con todas las comodidades",15:00,12:00,"Cancelación gratuita hasta 48 horas antes del check-in","WiFi gratuito,Piscina,Restaurante,Gimnasio,Spa,Parqueadero,Room Service",https://www.hotel.com,250000
