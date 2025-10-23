@@ -14,7 +14,7 @@ export const LogoSection = ({ onHomeClick }: LogoSectionProps) => {
       onClick={onHomeClick}
     >
       <div className="w-12 h-12 bg-gray rounded-lg flex items-center justify-center group-hover:scale-105 transition-transform duration-300 pulse-glow">
-        <img src={`./images/${appConfig?.app_logo_url}`} alt="" />
+        <img src={`/images/${appConfig?.app_logo_url}`} alt="" />
 
       </div>
       <div className="hidden md:block">

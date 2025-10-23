@@ -20,6 +20,8 @@ import Services from "./pages/Services";
 import Adventures from "./pages/Adventures";
 import Culture from "./pages/Culture";
 import BusinessDetail from "./pages/BusinessDetail";
+import FeaturedBusinessDetail from "./pages/FeaturedBusinessDetail";
+
 import SponsorDetail from "./pages/SponsorDetail";
 import DiscoverVillavicencio from "./pages/DiscoverVillavicencio";
 import DiscoverHotels from "./pages/DiscoverHotels";
@@ -50,6 +52,8 @@ import HabeasData from "./pages/HabeasData";
 import PointsOfInterest from "./pages/PointsOfInterest";
 import AgenciesOperators from "./pages/AgenciesOperators";
 import Payment from "./pages/Payment";
+import { TopBar } from "./components/TopBar";
+import { Header } from "@radix-ui/react-accordion";
 
 const queryClient = new QueryClient();
 
@@ -58,67 +62,68 @@ const App = () => (
     <AppConfigProvider>
       <AuthProvider>
         <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/news" element={<News />} />
-            <Route path="/institutional" element={<Institutional />} />
-            <Route path="/explore-destinations" element={<ExploreDestinations />} />
-            <Route path="/events" element={<Events />} />
-            <Route path="/hotels" element={<Hotels />} />
-            <Route path="/hotel/:id" element={<HotelDetail />} />
-            <Route path="/hotel/:hotelId/reservation/:roomId" element={<ReservationPage />} />
-            <Route path="/payment" element={<Payment />} />
-            <Route path="/restaurants" element={<Restaurants />} />
-            <Route path="/experiences" element={<Experiences />} />
-            <Route path="/unique-experiences" element={<UniqueExperiences />} />
-            <Route path="/services" element={<Services />} />
-            <Route path="/service/:id" element={<ServiceDetail />} />
-            <Route path="/adventures" element={<Adventures />} />
-            <Route path="/culture" element={<Culture />} />
-            <Route path="/business/:id" element={<BusinessDetail />} />
-            <Route path="/sponsor/:id" element={<SponsorDetail />} />
-            <Route path="/discover" element={<DiscoverVillavicencio />} />
-            <Route path="/discover/hotels" element={<DiscoverHotels />} />
-            <Route path="/discover/restaurants" element={<DiscoverRestaurants />} />
-            <Route path="/discover/adventure" element={<DiscoverAdventure />} />
-            <Route path="/discover/culture" element={<DiscoverCulture />} />
-            
-            {/* New Routes */}
-            <Route path="/points-of-interest" element={<PointsOfInterest />} />
-            <Route path="/agencies-operators" element={<AgenciesOperators />} />
-            
-            {/* Dashboard Routes */}
-            <Route path="/admin/dashboard" element={<AdminDashboard />} />
-            <Route path="/tour-operator/dashboard" element={<TourOperatorDashboard />} />
-            <Route path="/business-owner/dashboard" element={<BusinessOwnerDashboard />} />
-            <Route path="/admin/change-password" element={<ChangePassword />} />
-            <Route path="/admin/technical-support" element={<TechnicalSupport />} />
-            <Route path="/admin/user-manual" element={<UserManual />} />
-            <Route path="/admin/configuration-manual" element={<ConfigurationManual />} />
-            <Route path="/admin/app-config" element={<AppConfig />} />
-            <Route path="/tourist/dashboard" element={<TouristDashboard />} />
-            <Route path="/guest/dashboard" element={<GuestDashboard />} />
-            <Route path="/system-manual" element={<SystemManual />} />
-            
-            {/* Legal and Policy Pages */}
-            <Route path="/terms-of-service" element={<TermsOfService />} />
-            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-            <Route path="/sustainable-tourism" element={<SustainableTourism />} />
-            <Route path="/child-protection" element={<ChildProtection />} />
-            <Route path="/reservation-policies" element={<ReservationPolicies />} />
-            <Route path="/cancellation-policies" element={<CancellationPolicies />} />
-            <Route path="/habeas-data" element={<HabeasData />} />
-            
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
-      </TooltipProvider>
-    </AuthProvider>
+          <Toaster />
+          <Sonner />
+          <BrowserRouter>
+          
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/news" element={<News />} />
+              <Route path="/institutional" element={<Institutional />} />
+              <Route path="/explore-destinations" element={<ExploreDestinations />} />
+              <Route path="/events" element={<Events />} />
+              <Route path="/hotels" element={<Hotels />} />
+              <Route path="/hotel/:id" element={<HotelDetail />} />
+              <Route path="/hotel/:hotelId/reservation/:roomId" element={<ReservationPage />} />
+              <Route path="/payment" element={<Payment />} />
+              <Route path="/restaurants" element={<Restaurants />} />
+              <Route path="/experiences" element={<Experiences />} />
+              <Route path="/unique-experiences" element={<UniqueExperiences />} />
+              <Route path="/services" element={<Services />} />
+              <Route path="/service/:id" element={<ServiceDetail />} />
+              <Route path="/adventures" element={<Adventures />} />
+              <Route path="/culture" element={<Culture />} />
+              <Route path="/business/:id" element={<BusinessDetail />} />
+              <Route path="/sponsor/:id" element={<SponsorDetail />} />
+              <Route path="/discover" element={<DiscoverVillavicencio />} />
+              <Route path="/discover/hotels" element={<DiscoverHotels />} />
+              <Route path="/discover/restaurants" element={<DiscoverRestaurants />} />
+              <Route path="/discover/adventure" element={<DiscoverAdventure />} />
+              <Route path="/discover/culture" element={<DiscoverCulture />} />
+              <Route path="/featured-business/:id" element={<FeaturedBusinessDetail />} />              
+              {/* New Routes */}
+              <Route path="/points-of-interest" element={<PointsOfInterest />} />
+              <Route path="/agencies-operators" element={<AgenciesOperators />} />
+              
+              {/* Dashboard Routes */}
+              <Route path="/admin/dashboard" element={<AdminDashboard />} />
+              <Route path="/tour-operator/dashboard" element={<TourOperatorDashboard />} />
+              <Route path="/business-owner/dashboard" element={<BusinessOwnerDashboard />} />
+              <Route path="/admin/change-password" element={<ChangePassword />} />
+              <Route path="/admin/technical-support" element={<TechnicalSupport />} />
+              <Route path="/admin/user-manual" element={<UserManual />} />
+              <Route path="/admin/configuration-manual" element={<ConfigurationManual />} />
+              <Route path="/admin/app-config" element={<AppConfig />} />
+              <Route path="/tourist/dashboard" element={<TouristDashboard />} />
+              <Route path="/guest/dashboard" element={<GuestDashboard />} />
+              <Route path="/system-manual" element={<SystemManual />} />
+              
+              {/* Legal and Policy Pages */}
+              <Route path="/terms-of-service" element={<TermsOfService />} />
+              <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+              <Route path="/sustainable-tourism" element={<SustainableTourism />} />
+              <Route path="/child-protection" element={<ChildProtection />} />
+              <Route path="/reservation-policies" element={<ReservationPolicies />} />
+              <Route path="/cancellation-policies" element={<CancellationPolicies />} />
+              <Route path="/habeas-data" element={<HabeasData />} />
+              
+              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </BrowserRouter>
+        </TooltipProvider>
+      </AuthProvider>
     </AppConfigProvider>
   </QueryClientProvider>
 );

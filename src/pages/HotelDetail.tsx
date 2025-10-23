@@ -10,12 +10,16 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { RoomCard } from "@/components/RoomCard";
 import { MapPin, Star, Wifi, Car, Utensils, Dumbbell, Phone, Mail, Globe, ArrowLeft } from "lucide-react";
+import { useCachedData } from "@/hooks/useCachedData";
+import { dataService } from "@/services/dataService";
 
 const HotelDetail = () => {
   const [currentLanguage, setCurrentLanguage] = useState("es");
   const { id } = useParams();
   const navigate = useNavigate();
 
+
+  
   // Mock hotel data - in real app this would come from API
   const hotel = {
     id: 1,

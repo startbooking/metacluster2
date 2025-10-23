@@ -18,7 +18,6 @@ const fetchData = async (endpoint: string) => {
     const response = await fetch(getDataUrl(endpoint), {
       headers: API_CONFIG.DEFAULT_HEADERS,
     });
-    // console.log(response)
     return handleResponse(response);
   } catch (error) {
     console.error(`Error fetching data from ${endpoint}:`, error);
@@ -90,6 +89,7 @@ export const dataService = {
 
   // Empresas
   getBusinesses: () => fetchData('/businesses'),
+  getBusinessByCategory: (category: string) => fetchData(`/businesses/${category}`),
   getBusinessById: (id: string) => fetchData(`/businesses/${id}`),
   createBusiness: (business: any) => postData('/businesses', business),
   updateBusiness: (id: string, business: any) => putData(`/businesses/${id}`, business),

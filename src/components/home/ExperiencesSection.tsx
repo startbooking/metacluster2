@@ -7,17 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { useCachedData } from "@/hooks/useCachedData";
 import { dataService } from "@/services/dataService";
 
-interface Experience {
-  id: string;
-  name: string;
-  category: string;
-  duration: string;
-  rating: number;
-  price: string;
-  maxPeople: number;
-  image: string;
-  description: string;
-}
+
 
 interface ExperiencesSectionProps {
   language: string;
@@ -30,6 +20,10 @@ export const ExperiencesSection = ({ language }: ExperiencesSectionProps) => {
     cacheKey: 'featured-experiences',
     fetchFn: dataService.getExperiences
   });
+
+
+  const experienceToShow = featuredExperiences && featuredExperiences.length > 0 ? featuredExperiences : [];
+  const serviceToShowSlide = experienceToShow.slice(0,3)
 
   if (isLoading) {
     return (
@@ -64,11 +58,11 @@ export const ExperiencesSection = ({ language }: ExperiencesSectionProps) => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {featuredExperiences?.map((experience) => (
+          {serviceToShowSlide?.map((experience) => (
             <Card key={experience.id} className="group hover:shadow-xl transition-all duration-300 overflow-hidden bg-white">
               <div className="relative h-48 overflow-hidden">
                 <img 
-                  src={experience.image} 
+                  src={`images/experiences/${experience.image}`} 
                   alt={experience.name}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                 />

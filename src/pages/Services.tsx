@@ -8,17 +8,23 @@ import { MapPin, Star, Clock, Phone, Users, Wrench } from "lucide-react";
 import { TopBar } from "@/components/TopBar";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-
-// import { dataService } from '@/services/dataService';
 import { useAppConfig } from "@/contexts/AppConfigContext";
-
+import { useCachedData } from "@/hooks/useCachedData";
+import { dataService } from "@/services/dataService";
+import { ServicesData } from "@/interface/interface";
 
 const Services = () => {
-    const { appConfig } = useAppConfig();
+  const { appConfig } = useAppConfig();
   
   const [currentLanguage, setCurrentLanguage] = useState("es");
   const navigate = useNavigate();
 
+  const { data: allServices, isLoading } = useCachedData<ServicesData[]>({
+      cacheKey: 'featured-services',
+      fetchFn: dataService.getServices
+    });
+
+  console.log(allServices)
   // const dataServices = await dataService.getAppConfig()
 
   /* const services = [
@@ -109,6 +115,9 @@ const Services = () => {
     }
   ]; */
 
+
+
+
   const openWaze = (location: string) => {
     window.open(`https://waze.com/ul?q=${encodeURIComponent(location)}`, '_blank');
   };
@@ -135,7 +144,7 @@ const Services = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((service) => (
+            {allServices.map((service) => (
               <Card key={service.id} className={`group hover:shadow-xl transition-all duration-300 overflow-hidden ${service.isVip ? 'border-2 border-green-200 bg-gradient-to-br from-green-50 to-green-100/50' : 'bg-white'}`}>
                 <div className="relative h-64 overflow-hidden">
                   <img 
@@ -151,7 +160,7 @@ const Services = () => {
                     <Star className="w-4 h-4 text-yellow-500 fill-current" />
                     <span className="ml-1 text-sm font-medium">{service.rating}</span>
                   </div>
-                  {service.isVip && (
+                  {service.is_vip && (
                     <Badge className="absolute bottom-4 left-4 bg-green-600 text-white">
                       ⭐ VIP SPONSOR
                     </Badge>
@@ -200,7 +209,7 @@ const Services = () => {
                   </div>
                   
                   <div className="flex items-center justify-between mb-4">
-                    <span className="text-xl font-bold text-green-600">{service.price}</span>
+                    <span className="text-xl font-bold text-green-600">{service.price_range}</span>
                     <div className="flex items-center text-sm text-muted-foreground">
                       <Phone className="w-3 h-3 mr-1" />
                       {service.phone}

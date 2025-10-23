@@ -32,6 +32,9 @@ export const ServicesSection = ({ language }: ServicesSectionProps) => {
     fetchFn: dataService.getServices
   });
 
+  const serviceToShow = featuredServices && featuredServices.length > 0 ? featuredServices : [];
+  const serviceToShowSlide = serviceToShow.slice(0,3)
+
   const handleViewDetails = (serviceId: string) => {
     navigate(`/service/${serviceId}`);
   };
@@ -69,11 +72,11 @@ export const ServicesSection = ({ language }: ServicesSectionProps) => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {featuredServices?.map((service) => (
+          {serviceToShowSlide?.map((service) => (
             <Card key={service.id} className={`group hover:shadow-xl transition-all duration-300 overflow-hidden ${service.isVip ? 'border-2 border-green-200 bg-gradient-to-br from-green-50 to-green-100/50' : 'bg-white'}`}>
               <div className="relative h-48 overflow-hidden">
                 <img 
-                  src={service.image} 
+                  src={`images/services/${service.image}`} 
                   alt={service.name}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                 />
@@ -90,7 +93,7 @@ export const ServicesSection = ({ language }: ServicesSectionProps) => {
                 {service.isVip && (
                   <div className="absolute bottom-4 left-4">
                     <Badge className="bg-green-600 text-white">
-                      ⭐ VIP SPONSOR
+                      ⭐ VIP Sponsor
                     </Badge>
                   </div>
                 )}

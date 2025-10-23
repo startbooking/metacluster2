@@ -9,11 +9,21 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { HotelDetail } from "@/components/HotelDetail";
 import { useNavigate } from "react-router-dom";
+import { useCachedData } from "@/hooks/useCachedData";
+import { Business } from "@/interface/interface";
+import { dataService } from "@/services/dataService";
 
 const Hotels = () => {
   const [currentLanguage, setCurrentLanguage] = useState("es");
   const navigate = useNavigate();
 
+    const { data: allHotels, isLoading } = useCachedData<Business[]>({
+      cacheKey: 'featured-hotels',
+      fetchFn: dataService.getHotels
+    });
+
+console.log(allHotels)
+  
   const accommodations = {
     hoteles: [
       {
@@ -86,6 +96,8 @@ const Hotels = () => {
       }
     ]
   };
+
+  console.log(accommodations);
 
   const getAmenityIcon = (amenity: string) => {
     switch (amenity) {
