@@ -22,7 +22,7 @@ export const HomeContent = ({ language }: HomeContentProps) => {
   return (
     <div className="space-y-16">
       {/* Slider de imágenes */}
-      <section className="container mx-auto px-4 pt-8">
+      <section className="container mx-auto p-1">
         <ImageSlider />
       </section>
 
@@ -40,7 +40,7 @@ export const HomeContent = ({ language }: HomeContentProps) => {
           <Button 
             size="lg" 
             className="bg-primary hover:bg-primary/90"
-            onClick={() => navigate('/explore-destinations')}
+            onClick={() => navigate('/points-of-interest')}
           >
             <MapPin className="w-5 h-5 mr-2" />
             Explorar Destinos

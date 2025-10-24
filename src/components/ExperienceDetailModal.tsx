@@ -7,8 +7,7 @@ import {
   Users, 
   Clock, 
   X,
-  Navigation,
-  Car
+  Navigation
 } from "lucide-react";
 
 interface Event {
@@ -75,10 +74,10 @@ export const EventDetailModal = ({ event, onClose }: EventDetailModalProps) => {
               {event.category}
             </Badge>
             <Badge 
-              variant={event.price ? "secondary" : "default"} 
+              variant={event.isFree ? "secondary" : "default"} 
               className="absolute top-4 right-16"
             >
-              {event.price ? "Gratis" : event.price}
+              {event.isFree ? "Gratis" : event.price}
             </Badge>
           </div>
 
@@ -175,7 +174,7 @@ export const EventDetailModal = ({ event, onClose }: EventDetailModalProps) => {
                     onClick={handleNavigation}
                     className="w-full"
                   >
-                    <Car className="w-4 h-4 mr-2" />
+                    <Navigation className="w-4 h-4 mr-2" />
                     Cómo llegar
                   </Button>
                 </div>

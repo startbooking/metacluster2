@@ -1,9 +1,9 @@
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Calendar, MapPin, Users, Clock } from "lucide-react";
+import { Calendar, MapPin, Users, Clock, Car, Navigation } from "lucide-react";
 import { TopBar } from "@/components/TopBar";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
@@ -11,6 +11,7 @@ import { EventDetailModal } from "@/components/EventDetailModal";
 import { useCachedData } from "@/hooks/useCachedData";
 import { dataService } from "@/services/dataService";
 import { EventsData } from "@/interface/interface";
+import { Navigate } from "react-router-dom";
 
 const Events = () => {
   const [currentLanguage, setCurrentLanguage] = useState("es");
@@ -27,6 +28,10 @@ const Events = () => {
     const wazeUrl = `https://waze.com/ul?q=${encodeURIComponent(location + " Villavicencio Meta")}`;
     window.open(wazeUrl, '_blank');
   };
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" }); // Desplaza la ventana al inicio (arriba izquierda)
+  }, []); // Se ejecuta cada vez que el ID o la ruta cambian
 
   return (
     <div className="min-h-screen bg-background">
@@ -100,12 +105,10 @@ const Events = () => {
                     </Button>
                     <Button
                       variant="outline"
-                      className="w-full"
+                      className="w-full text-primary border-primary"
                       onClick={() => openWaze(event.location)}
                     >
-                      <svg className="w-4 h-4 mr-2" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M19.83 12.63c0-1.21-.31-2.4-.9-3.45l-7.86 7.86c1.05.59 2.24.9 3.45.9 4.02 0 7.29-3.27 7.29-7.29v1.98h-1.98zm-7.84-7.84c-1.21 0-2.4.31-3.45.9l7.86 7.86c-.59-1.05-.9-2.24-.9-3.45 0-4.02 3.27-7.29 7.29-7.29v1.98h1.98c0-1.21-.31-2.4-.9-3.45L12.01 4.8z" />
-                      </svg>
+                      <Navigation />
                       Ir con Waze
                     </Button>
                   </div>

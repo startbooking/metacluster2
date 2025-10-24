@@ -17,13 +17,13 @@ const Hotels = () => {
   const [currentLanguage, setCurrentLanguage] = useState("es");
   const navigate = useNavigate();
 
-    const { data: allHotels, isLoading } = useCachedData<Business[]>({
-      cacheKey: 'featured-hotels',
-      fetchFn: dataService.getHotels
-    });
+  const { data: allHotels, isLoading } = useCachedData<Business[]>({
+    cacheKey: 'featured-hotels',
+    fetchFn: dataService.getHotels
+  });
 
-console.log(allHotels)
-  
+  console.log(allHotels)
+
   const accommodations = {
     hoteles: [
       {
@@ -112,8 +112,8 @@ console.log(allHotels)
   const AccommodationCard = ({ item }: { item: any }) => (
     <Card className="group hover:shadow-xl transition-all duration-300 overflow-hidden">
       <div className="relative h-48 overflow-hidden">
-        <img 
-          src={item.image} 
+        <img
+          src={item.image}
           alt={item.name}
           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
         />
@@ -123,7 +123,7 @@ console.log(allHotels)
           <span className="ml-1 text-sm font-medium">{item.rating}</span>
         </div>
       </div>
-      
+
       <CardHeader>
         <CardTitle className="text-foreground group-hover:text-primary transition-colors">
           {item.name}
@@ -133,10 +133,10 @@ console.log(allHotels)
           {item.location}
         </div>
       </CardHeader>
-      
+
       <CardContent>
         <p className="text-muted-foreground mb-4">{item.description}</p>
-        
+
         <div className="flex flex-wrap gap-2 mb-4">
           {item.amenities.map((amenity: string, index: number) => (
             <Badge key={index} variant="outline" className="flex items-center gap-1">
@@ -145,7 +145,7 @@ console.log(allHotels)
             </Badge>
           ))}
         </div>
-        
+
         <div className="flex items-center justify-between">
           <span className="text-lg font-bold text-primary">{item.price}/noche</span>
           <Button size="sm" onClick={() => navigate(`/hotel/${item.id}`)}>
@@ -159,8 +159,8 @@ console.log(allHotels)
   return (
     <div className="min-h-screen bg-background">
       <TopBar currentLanguage={currentLanguage} onLanguageChange={setCurrentLanguage} />
-      <Header activeSection="businesses" onSectionChange={() => {}} language={currentLanguage} />
-      
+      <Header activeSection="businesses" onSectionChange={() => { }} language={currentLanguage} />
+
       <main className="pt-24">
         <div className="container mx-auto px-4 py-8">
           <div className="text-center mb-12">
@@ -179,7 +179,7 @@ console.log(allHotels)
               <TabsTrigger value="cabanas">Cabañas</TabsTrigger>
               <TabsTrigger value="fincas">Fincas</TabsTrigger>
             </TabsList>
-            
+
             <TabsContent value="hoteles" className="mt-8">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {accommodations.hoteles.map((hotel) => (
@@ -187,7 +187,7 @@ console.log(allHotels)
                 ))}
               </div>
             </TabsContent>
-            
+
             <TabsContent value="glamping" className="mt-8">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {accommodations.glamping.map((glamping) => (
@@ -195,7 +195,7 @@ console.log(allHotels)
                 ))}
               </div>
             </TabsContent>
-            
+
             <TabsContent value="cabanas" className="mt-8">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {accommodations.cabanas.map((cabana) => (
@@ -203,7 +203,7 @@ console.log(allHotels)
                 ))}
               </div>
             </TabsContent>
-            
+
             <TabsContent value="fincas" className="mt-8">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {accommodations.fincas.map((finca) => (

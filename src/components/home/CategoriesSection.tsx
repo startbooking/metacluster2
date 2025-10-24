@@ -12,38 +12,7 @@ interface CategoriesSectionProps {
 export const CategoriesSection = ({ language }: CategoriesSectionProps) => {
   const t = useTranslations(language);
   const { appCategoriesStats } = useAppConfig();
-
-   const categories = appCategoriesStats || [];
-
-  //  console.log(categories);
-
-
-  /* const categories = [
-    {
-      name: t.categories.hotels.name,
-      description: t.categories.hotels.description,
-      icon: Hotel,
-      count: 25
-    },
-    {
-      name: t.categories.restaurants.name,
-      description: t.categories.restaurants.description,
-      icon: Utensils,
-      count: 40
-    },
-    {
-      name: t.categories.adventure.name,
-      description: t.categories.adventure.description,
-      icon: Plus,
-      count: 15
-    },
-    {
-      name: t.categories.culture.name,
-      description: t.categories.culture.description,
-      icon: Home,
-      count: 20
-    }
-  ]; */
+  const categories = appCategoriesStats || [];
 
   return (
     <section className="container mx-auto px-4">

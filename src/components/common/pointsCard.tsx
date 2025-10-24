@@ -5,43 +5,32 @@ import { Button } from "@/components/ui/button";
 import { Star, MapPin, Eye, Percent, Receipt } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import WordCountDisplay from "@/utils/WordCountDisplay";
+import { PointsData } from "@/inerface/interface";
 
-interface BusinessCardProps {
-  id: string;
-  name: string;
-  category: string;
-  address: string;
-  rating: number;
-  image: string;
-  description: string;
-  is_sponsor?: boolean;
-  price?: string;
-  taxes?: number;
-  tax_percentage?: number;
-  specialties?: string[];
-  amenities?: string[];
-  onViewDetails?: (id: string) => void;
-}
 
-export const BusinessCard = ({
+
+export const PointsCard = ({
   id,
-  name,
-  category,
-  address,
-  rating,
-  image,
+  title,
+  date,
+  time,
   description,
-  is_sponsor,
+  location,
   price,
-  taxes,
-  tax_percentage,
-  specialties,
-  amenities,
-  onViewDetails
-}: BusinessCardProps) => {
+  start_date,
+  end_date,
+  is_free,
+  max_capacity,
+  category,
+  image,
+  images,
+  organizer,
+  includes,
+  requirements,
+}: PointsData) => {
   const navigate = useNavigate();
 
-  const handleViewDetails = () => {
+  /* const handleViewDetails = () => {
     if (onViewDetails) {
       onViewDetails(id);
     } else if (is_sponsor) {
@@ -49,7 +38,7 @@ export const BusinessCard = ({
     } else {
       navigate(`/business/${id}`);
     }
-  };
+  }; */
   
 
   const DISPLAY_LIMIT = 20;
@@ -74,14 +63,6 @@ export const BusinessCard = ({
           <Star className="w-4 h-4 text-yellow-500 fill-current mr-1" />
           <span className="font-bold text-sm">{rating}</span>
         </div>
-
-        {is_sponsor && (
-          <div className="absolute bottom-4 left-4">
-            <Badge variant="outline" className="bg-white/90 text-primary border-primary rounded-md">
-              VIP Sponsor
-            </Badge>
-          </div>
-        )}
       </div>
 
       <CardHeader>
@@ -99,10 +80,6 @@ export const BusinessCard = ({
           text={description}
           wordLimit={DISPLAY_LIMIT}
         />
-        {/* <p className="text-muted-foreground mb-4 text-justify">
-          {description}
-        </p> */}
-
         {/* Precio e impuestos */}
         {price && (
           <div className="bg-accent/20 rounded-lg p-3 mb-4">

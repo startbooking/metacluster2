@@ -1,6 +1,6 @@
 
 export interface Business {
-  id: number;
+  id: string;
   name: string;
   phone:string;
   email:string;
@@ -13,6 +13,7 @@ export interface Business {
   specialties:[];
   description: string;
   is_sponsor: boolean;
+  is_vip:number;
   price?: string;
   taxes?: number;
   tax_percentage?: number;
@@ -35,8 +36,8 @@ export interface FeaturedBusiness {
   address: string;
   schedule: string;
   capacity: string;
-  images: string[];
-  amenities: string[];
+  images: [];
+  amenities: [];
   description: string;
   is_sponsor: boolean;
 }
@@ -48,9 +49,21 @@ export interface Experience {
   duration: string;
   rating: number;
   price: string;
+  date:string;
+  time:string;
+  capacity:string;
+  organizer:string;
+  is_free:string;
+  tax_percentage:number;
+  difficulty:string;
+  location:string;
   max_people: number;
   image: string;
+  images:[];
+  includes:[];
   description: string;
+  long_description:string;
+  short_description:string;
 }
 
 export interface ServicesData {
@@ -87,4 +100,66 @@ export interface EventsData {
   organizer:string;
   includes:[];
   requirements:[];
+}
+
+export interface AdventureCardProps {
+  id:number;
+  image:string;
+  name:string;
+  category:string;
+  rating:string;
+  difficulty:string;
+  location:string;
+  duration:string;
+  max_people:string;
+  description: string;
+  price: string;
+  taxes: number;
+  taxPercentage: number;
+}
+
+export interface BusinessCardProps {
+  id: string;
+  name: string;
+  phone:string;
+  email:string;
+  category: string;
+  address: string;
+  rating: number;
+  image: string;
+  description: string;
+  is_sponsor?: boolean;
+  price?: string;
+  taxes?: number;
+  tax_percentage?: number;
+  specialties?: string[];
+  amenities?: string[];
+  onViewDetails?: (id: string) => void;
+}
+
+export interface PointsData {
+  id:number;
+  name:string;
+  slug:string;
+  description:string;
+  image:string;
+  short_description:string;
+  category:string;
+  latitude:string;
+  longitude:string;
+  address:string;
+  opening_hours:string;
+  currency:string;
+  images:string;
+  historical_significance:string;
+  best_time_to_visit:string;
+  accessibility_info:string;
+  contact_info:string;
+  is_active:string;
+  is_featured:string;
+  visitor_count:string;
+  rating:string;
+  review_count:string;
+  tags:string;
+  entry_fee:number;
 }

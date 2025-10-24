@@ -138,11 +138,11 @@ export const dataService = {
   deleteEvent: (id: string) => deleteData(`/events/${id}`),
 
   // Puntos de interés
-  getPointsOfInterest: () => fetchData('/points-of-interest'),
-  getPointOfInterestById: (id: string) => fetchData(`/points-of-interest/${id}`),
-  createPointOfInterest: (poi: any) => postData('/points-of-interest', poi),
-  updatePointOfInterest: (id: string, poi: any) => putData(`/points-of-interest/${id}`, poi),
-  deletePointOfInterest: (id: string) => deleteData(`/points-of-interest/${id}`),
+  getPointsOfInterest: () => fetchData('/points'),
+  getPointOfInterestById: (id: string) => fetchData(`/points/${id}`),
+  createPointOfInterest: (poi: any) => postData('/points', poi),
+  updatePointOfInterest: (id: string, poi: any) => putData(`/points/${id}`, poi),
+  deletePointOfInterest: (id: string) => deleteData(`/points/${id}`),
 
   // Usuarios
   getUsers: () => fetchData('/users'),

@@ -2,42 +2,31 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Star, MapPin, Clock, Receipt, Percent } from "lucide-react";
+import { Star, MapPin, Clock, Receipt, Percent, Car, Navigation } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-
-interface AdventureCardProps {
-  id: string;
-  name: string;
-  location: string;
-  description: string;
-  rating: number;
-  price: string;
-  taxes: number;
-  taxPercentage: number;
-  duration: string;
-  difficulty: string;
-  image: string;
-  category: string;
-}
+import { Experience } from "@/interface/interface";
+import { useState } from "react";
 
 export const AdventureCard = ({ 
-  id, 
-  name, 
-  location, 
-  description, 
-  rating, 
-  price, 
-  taxes,
-  taxPercentage,
-  duration, 
-  difficulty, 
-  image, 
-  category 
-}: AdventureCardProps) => {
+  id,
+  image,
+  name,
+  category,
+  rating,
+  difficulty,
+  location,
+  duration,
+  price,
+  tax_percentage,
+  description,
+  max_people,
+  experience,
+}: Experience) => {
   const navigate = useNavigate();
+  const [selectedPoint, setSelectedPoint]  = useState();
 
   const handleViewMore = () => {
-    navigate(`/sponsor/${id}`);
+    navigate(`/experiences/${id}`);
   };
 
   const getDifficultyColor = (difficulty: string) => {
@@ -53,7 +42,7 @@ export const AdventureCard = ({
     <Card className="group hover:shadow-xl transition-all duration-300 overflow-hidden">
       <div className="relative h-48 overflow-hidden">
         <img 
-          src={image} 
+          src={`/images/experiences/${image}`} 
           alt={name}
           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
         />
@@ -95,13 +84,13 @@ export const AdventureCard = ({
           <div className="flex justify-between items-center">
             <span className="text-lg font-bold text-primary">{price}</span>
             <div className="text-right">
-              <div className="flex items-center text-sm text-muted-foreground">
+              {/* <div className="flex items-center text-sm text-muted-foreground">
                 <Receipt className="w-3 h-3 mr-1" />
                 <span>Impuestos: ${taxes.toLocaleString()}</span>
-              </div>
+              </div> */}
               <div className="flex items-center text-sm text-muted-foreground">
                 <Percent className="w-3 h-3 mr-1" />
-                <span>{taxPercentage}%</span>
+                <span>{tax_percentage}</span>
               </div>
             </div>
           </div>
@@ -114,7 +103,7 @@ export const AdventureCard = ({
             onClick={() => window.open(`https://waze.com/ul?q=${encodeURIComponent(location)}`, '_blank')}
             className="flex items-center gap-1 hover:bg-green-50 border-green-500 text-green-700"
           >
-            <img src="https://cdn.icon-icons.com/icons2/2699/PNG/512/waze_logo_icon_168210.png" alt="Waze" className="w-4 h-4" />
+          <Navigation className="w-4 h-4 mr-2" />
             Ver Waze
           </Button>
           <Button 
@@ -126,7 +115,9 @@ export const AdventureCard = ({
           </Button>
         </div>
         
-        <Button onClick={handleViewMore} variant="outline" className="w-full">
+        <Button 
+        onClick={() => setSelectedPoint(experience)}
+        variant="outline" className="w-full border-primary text-primary">
           Ver Detalles
         </Button>
       </CardContent>

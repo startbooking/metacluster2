@@ -6,8 +6,10 @@ import { Star, Clock, Users, Eye, Loader2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useCachedData } from "@/hooks/useCachedData";
 import { dataService } from "@/services/dataService";
-
-
+import { AdventureCard } from "../common/AdventureCard";
+import { Experience } from "@/interface/interface";
+import { useMemo } from "react";
+import { shuffleArray } from "@/utils/arrayUtils";
 
 interface ExperiencesSectionProps {
   language: string;
@@ -21,9 +23,12 @@ export const ExperiencesSection = ({ language }: ExperiencesSectionProps) => {
     fetchFn: dataService.getExperiences
   });
 
-
   const experienceToShow = featuredExperiences && featuredExperiences.length > 0 ? featuredExperiences : [];
-  const serviceToShowSlide = experienceToShow.slice(0,3)
+  const shuffledItems = useMemo(() => shuffleArray(experienceToShow), [experienceToShow]);
+  const serviceToShowSlide = shuffleArray(shuffledItems).slice(0, 3);
+  
+  
+  // const serviceToShowSlide = experienceToShow.slice(0,3)
 
   if (isLoading) {
     return (
@@ -59,58 +64,23 @@ export const ExperiencesSection = ({ language }: ExperiencesSectionProps) => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {serviceToShowSlide?.map((experience) => (
-            <Card key={experience.id} className="group hover:shadow-xl transition-all duration-300 overflow-hidden bg-white">
-              <div className="relative h-48 overflow-hidden">
-                <img 
-                  src={`images/experiences/${experience.image}`} 
-                  alt={experience.name}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                <div className="absolute top-4 left-4">
-                  <Badge className="bg-green-500 text-white">
-                    {experience.category}
-                  </Badge>
-                </div>
-                <div className="absolute top-4 right-4 flex items-center bg-white/90 rounded-full px-3 py-1">
-                  <Star className="w-4 h-4 text-yellow-500 fill-current mr-1" />
-                  <span className="font-bold text-sm">{experience.rating}</span>
-                </div>
-              </div>
-              
-              <CardHeader>
-                <CardTitle className="text-xl text-foreground group-hover:text-green-600 transition-colors">
-                  {experience.name}
-                </CardTitle>
-                <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                  <div className="flex items-center">
-                    <Clock className="w-4 h-4 mr-1" />
-                    {experience.duration}
-                  </div>
-                  <div className="flex items-center">
-                    <Users className="w-4 h-4 mr-1" />
-                    Máx. {experience.maxPeople}
-                  </div>
-                </div>
-              </CardHeader>
-              
-              <CardContent>
-                <p className="text-muted-foreground mb-4">
-                  {experience.description}
-                </p>
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-xl font-bold text-green-600">{experience.price}</span>
-                  <span className="text-sm text-muted-foreground">por persona</span>
-                </div>
-                <Button 
-                  className="w-full bg-green-500 hover:bg-green-600"
-                  onClick={() => navigate('/experiences')}
-                >
-                  <Eye className="w-4 h-4 mr-2" />
-                  Ver Experiencias
-                </Button>
-              </CardContent>
-            </Card>
+            <AdventureCard 
+              key={experience.id}
+              id= {experience.id}
+              image= {experience.image}
+              name= {experience.name}
+              category= {experience.category}
+              rating= {experience.rating}
+              name= {experience.name}
+              price={experience.price}
+              duration= {experience.duration}
+              max_people= {experience.max_people}
+              description= {experience.description}
+              price= {experience.price}
+
+            
+            />
+            
           ))}
         </div>
 

@@ -54,6 +54,7 @@ import AgenciesOperators from "./pages/AgenciesOperators";
 import Payment from "./pages/Payment";
 import { TopBar } from "./components/TopBar";
 import { Header } from "@radix-ui/react-accordion";
+import ExperienceDetail from "./components/ExperienceDetail";
 
 const queryClient = new QueryClient();
 
@@ -79,10 +80,11 @@ const App = () => (
               <Route path="/payment" element={<Payment />} />
               <Route path="/restaurants" element={<Restaurants />} />
               <Route path="/experiences" element={<Experiences />} />
+              <Route path="/experiences/:id" element={<ExperienceDetail />} />
               <Route path="/unique-experiences" element={<UniqueExperiences />} />
               <Route path="/services" element={<Services />} />
               <Route path="/service/:id" element={<ServiceDetail />} />
-              <Route path="/adventures" element={<Adventures />} />
+              <Route path="/adventures" element={<Experiences />} />
               <Route path="/culture" element={<Culture />} />
               <Route path="/business/:id" element={<BusinessDetail />} />
               <Route path="/sponsor/:id" element={<SponsorDetail />} />

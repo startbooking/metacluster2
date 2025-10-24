@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { TopBar } from "@/components/TopBar";
 import { Header } from "@/components/Header";
 import { BusinessDirectory } from "@/components/BusinessDirectory";
@@ -55,6 +55,10 @@ const Index = () => {
         return <HomeContent language={currentLanguage} />;
     }
   };
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" }); // Desplaza la ventana al inicio (arriba izquierda)
+  }, []); // Se ejecuta cada vez que el ID o la ruta cambian
 
   return (
     <div className="min-h-screen bg-white">

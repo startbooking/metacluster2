@@ -43,7 +43,7 @@ export const BusinessCard = ({
     <Card className="group hover:shadow-xl transition-all duration-300 overflow-hidden">
       <div className="relative h-48 overflow-hidden">
         <img 
-          src={`/images/businnesses/${image}`}
+          src={`images/businnesses/${image}`}
           alt={name}
           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
         />

@@ -18,11 +18,12 @@ export const UpcomingEventsSection = ({ language }: UpcomingEventsSectionProps) 
   const t = useTranslations(language);
 
   const { data: allEvents, isLoading } = useCachedData<EventsData[]>({
-    cacheKey: 'featured-businesses',
+    cacheKey: 'featured-events',
     fetchFn: dataService.getEvents
   });
 
   const eventsToShow = allEvents && allEvents.length > 0 ? allEvents : [];
+  
   const eventsShowSlide = eventsToShow.slice(0,3)
 
 const openWaze = (location: string) => {

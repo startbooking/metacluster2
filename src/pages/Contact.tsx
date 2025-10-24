@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -42,6 +42,12 @@ export const Contact = () => {
     const wazeUrl = "https://waze.com/ul?q=Carrera%2035%20%2315-30%20Villavicencio%20Meta";
     window.open(wazeUrl, '_blank');
   };
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" }); // Desplaza la ventana al inicio (arriba izquierda)
+  }, []); // Se ejecuta cada vez que el ID o la ruta cambian
+
+
 
   return (
     <div className="min-h-screen bg-background">

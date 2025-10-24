@@ -163,7 +163,7 @@ export const HotelDetail = ({ hotel, onClose }: HotelDetailProps) => {
                   onNavigation={handleNavigation} 
                 />
               </TabsContent>
-            </Tabs>
+            </Tabs>ExperienceDetail
           </div>
         </div>
       </div>

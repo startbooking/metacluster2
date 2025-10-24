@@ -114,7 +114,7 @@ export const SearchSection = () => {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-1">
       <Card className="p-6 bg-white/95 backdrop-blur-sm shadow-lg border-0">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div className="relative md:col-span-2">

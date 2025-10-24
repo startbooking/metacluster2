@@ -16,7 +16,6 @@ export const ImageSlider = () => {
     setCurrentImage((prev) => (prev - 1 + totalImages) % totalImages);
   };
 
-
   const goToNext = useCallback(() => {
     setCurrentImage((prev) => (prev + 1) % totalImages);
   }, [totalImages]);
@@ -36,7 +35,7 @@ export const ImageSlider = () => {
   }
 
   return (
-    <div className="relative h-[70vh] overflow-hidden rounded-lg">
+    <div className="relative h-[75vh] overflow-hidden rounded-lg">
       <div className="relative w-full h-full">
         {images.map((image, index) => (
           <div

@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { TopBar } from "@/components/TopBar";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
@@ -7,58 +7,31 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { MapPin, Clock, Star, Camera } from "lucide-react";
+import { useCachedData } from "@/hooks/useCachedData";
+import { dataService } from "@/services/dataService";
+import { PointsData } from "@/interface/interface";
+import { PointDetailModal } from "@/components/PointDetailModal";
 
 const PointsOfInterest = () => {
   const [currentLanguage, setCurrentLanguage] = useState("es");
+  const [selectedPoint, setSelectedPoint] = useState();
 
-  const pointsOfInterest = [
-    {
-      id: 1,
-      name: "Bioparque Los Ocarros",
-      description: "Parque zoológico y de conservación con especies nativas de los Llanos Orientales",
-      category: "Naturaleza",
-      image: "https://images.unsplash.com/photo-1547036967-23d11aacaee0",
-      rating: 4.6,
-      openingHours: "8:00 AM - 5:00 PM",
-      location: "Restrepo, Meta"
-    },
-    {
-      id: 2,
-      name: "Catedral Nuestra Señora del Carmen",
-      description: "Hermosa catedral de arquitectura colonial en el centro de la ciudad",
-      category: "Religioso",
-      image: "https://images.unsplash.com/photo-1520637836862-4d197d17c41a",
-      rating: 4.4,
-      openingHours: "6:00 AM - 7:00 PM",
-      location: "Centro, Villavicencio"
-    },
-    {
-      id: 3,
-      name: "Parque de Los Fundadores",
-      description: "Parque histórico con monumentos y espacios recreativos",
-      category: "Histórico",
-      image: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e",
-      rating: 4.2,
-      openingHours: "24 horas",
-      location: "Centro, Villavicencio"
-    },
-    {
-      id: 4,
-      name: "Malecón de los Llanos",
-      description: "Paseo ribereño con vista al río Guatiquía y actividades recreativas",
-      category: "Recreativo",
-      image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4",
-      rating: 4.5,
-      openingHours: "6:00 AM - 10:00 PM",
-      location: "Villavicencio"
-    }
-  ];
+  const { data: featuredPoints, isLoading } = useCachedData<PointsData[]>({
+    cacheKey: 'featured-points',
+    fetchFn: dataService.getPointsOfInterest
+  });
+
+  const poinstToShow = featuredPoints && featuredPoints.length > 0 ? featuredPoints : [];
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" }); // Desplaza la ventana al inicio (arriba izquierda)
+  }, []); // Se ejecuta cada vez que el ID o la ruta cambian
 
   return (
     <div className="min-h-screen bg-background">
       <TopBar currentLanguage={currentLanguage} onLanguageChange={setCurrentLanguage} />
-      <Header activeSection="points-of-interest" onSectionChange={() => {}} language={currentLanguage} />
-      
+      <Header activeSection="points-of-interest" onSectionChange={() => { }} language={currentLanguage} />
+
       <main className="pt-24">
         <div className="container mx-auto px-4 py-8">
           <div className="text-center mb-12">
@@ -69,11 +42,11 @@ const PointsOfInterest = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {pointsOfInterest.map((point) => (
+            {poinstToShow.map((point) => (
               <Card key={point.id} className="group hover:shadow-xl transition-all duration-300 overflow-hidden">
                 <div className="relative h-48 overflow-hidden">
-                  <img 
-                    src={point.image} 
+                  <img
+                    src={`images/points/${point.image}`}
                     alt={point.name}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                   />
@@ -86,26 +59,29 @@ const PointsOfInterest = () => {
                     <span className="font-medium text-sm">{point.rating}</span>
                   </div>
                 </div>
-                
+
                 <CardHeader>
                   <CardTitle className="text-foreground group-hover:text-primary transition-colors">
                     {point.name}
                   </CardTitle>
                   <div className="flex items-center text-muted-foreground">
                     <MapPin className="w-4 h-4 mr-1" />
-                    {point.location}
+                    {point.address}
                   </div>
                 </CardHeader>
-                
+
                 <CardContent>
-                  <p className="text-muted-foreground mb-4">{point.description}</p>
-                  
+                  <p className="text-muted-foreground mb-4 text-justify">{point.description}</p>
+
                   <div className="flex items-center text-sm text-muted-foreground mb-4">
                     <Clock className="w-4 h-4 mr-2" />
-                    {point.openingHours}
+                    {point.opening_hours}
                   </div>
-                  
-                  <Button className="w-full">
+
+                  <Button className="w-full"
+                    onClick={() => setSelectedPoint(point)}
+                  >
+
                     <Camera className="w-4 h-4 mr-2" />
                     Ver más detalles
                   </Button>
@@ -115,8 +91,14 @@ const PointsOfInterest = () => {
           </div>
         </div>
       </main>
-      
+
       <Footer />
+      {selectedPoint && (
+        <PointDetailModal
+          point={selectedPoint}
+          onClose={() => setSelectedPoint(null)}
+        />
+      )}
     </div>
   );
 };

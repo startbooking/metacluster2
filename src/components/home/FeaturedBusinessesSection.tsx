@@ -5,7 +5,8 @@ import { dataService } from "@/services/dataService";
 import { BusinessCard } from "@/components/common/BusinessCard";
 import { useAppConfig } from "@/contexts/AppConfigContext";
 import { Business } from "@/interface/interface";
-
+import { shuffleArray } from '@/utils/arrayUtils';
+import { useMemo } from "react";
 interface FeaturedBusinessesSectionProps {
   language: string;
 }
@@ -19,7 +20,14 @@ export const FeaturedBusinessesSection = ({ language }: FeaturedBusinessesSectio
     fetchFn: dataService.getBusinesses
   });
 
+  const businessesToShow = featuredBusinesses && featuredBusinesses.length > 0 ? featuredBusinesses : [];
+  
+  const vipBusinesses = businessesToShow.filter(
+    (business) => business.is_vip === 1
+  );
 
+  const shuffledItems = useMemo(() => shuffleArray(vipBusinesses), [vipBusinesses]);
+  const businessesToShowSlide = shuffleArray(shuffledItems).slice(0, 3);
   const handleViewDetails = (businessId: string) => {
     navigate(`/featured-business/${businessId}`);
   };
@@ -44,9 +52,7 @@ export const FeaturedBusinessesSection = ({ language }: FeaturedBusinessesSectio
     );
   }
 
-  const businessesToShow = featuredBusinesses && featuredBusinesses.length > 0 ? featuredBusinesses : [];
-  const businessesToShowSlide = businessesToShow.slice(0,3)
-
+  
   return (
     <section className="py-16 bg-muted/30">
       <div className="container mx-auto px-4">

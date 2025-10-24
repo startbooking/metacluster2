@@ -1,17 +1,22 @@
+
 import { useEffect, useState } from "react";
-import { useCachedData } from "@/hooks/useCachedData";
-import { dataService } from "@/services/dataService";
-import { Experience } from "@/interface/interface";
-import { Camera } from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { MapPin, Star, Clock, Calendar, Users, Camera } from "lucide-react";
 import { TopBar } from "@/components/TopBar";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { useCachedData } from "@/hooks/useCachedData";
+import { dataService } from "@/services/dataService";
+import { Experience } from "@/interface/interface";
 import { AdventureCard } from "@/components/common/AdventureCard";
-import { useNavigate } from "react-router-dom"; // Importamos el hook de navegación
+import ExperienceDetail from "@/components/ExperienceDetail";
+
 
 const Experiences = () => {
   const [currentLanguage, setCurrentLanguage] = useState("es");
-  const navigate = useNavigate(); // Inicializamos la navegación
+  const [selectedExperience, setSelectedExperience] = useState<any>(null);
 
   const { data: featuredExperiences, isLoading } = useCachedData<Experience[]>({
     cacheKey: 'featured-experiences',
@@ -20,18 +25,13 @@ const Experiences = () => {
 
   const experienceToShow = featuredExperiences && featuredExperiences.length > 0 ? featuredExperiences : [];
 
-  // Se mantiene la función de Waze, aunque no se usa en el renderizado actual
   const openWaze = (location: string) => {
     window.open(`https://waze.com/ul?q=${encodeURIComponent(location)}`, '_blank');
   };
 
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }, []);
-
-  const handleCardClick = (id: string) => {
-    navigate(`/experiences/${id}`);
-  };
+    window.scrollTo({ top: 0, behavior: "smooth" }); // Desplaza la ventana al inicio (arriba izquierda)
+  }, []); // Se ejecuta cada vez que el ID o la ruta cambian
 
   return (
     <div className="min-h-screen bg-white">
@@ -52,34 +52,32 @@ const Experiences = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {experienceToShow.map((experience) => (
-              <div 
-                  key={experience.id} 
-                  onClick={() => handleCardClick(experience.id)} // Manejador de click
-                  className="cursor-pointer transition-shadow duration-300 hover:shadow-xl rounded-lg"
-              >
-                <AdventureCard 
-                  // ... todas las props de AdventureCard se pasan aquí
-                  key = {experience.id}
-                  id={experience.id}
-                  image={experience.image}
-                  name={experience.name}
-                  price={experience.price}
-                  category={experience.category}
-                  rating={experience.rating}
-                  difficulty={experience.difficulty}
-                  location={experience.location}
-                  duration={experience.duration}
-                  max_people={experience.max_people}
-                  experience={experience}
-                />
-              </div>
+              <AdventureCard 
+                key = {experience.id}
+                id = {experience.id}
+                image = {experience.image}
+                name = {experience.name}
+                price= {experience.price}
+                category = {experience.category}
+                rating = {experience.rating}
+                difficulty = {experience.difficulty}
+                location = {experience.location}
+                duration = {experience.duration}
+                max_people = {experience.max_people}
+                experience= {experience}
+              />
             ))}
           </div>
         </div>
       </main>
       
       <Footer />
-      {/* El modal de ExperienceDetail ha sido eliminado de aquí */}
+      {selectedExperience && (
+        <ExperienceDetail
+          experience={selectedExperience}
+          onClose={() => setSelectedExperience(null)}
+        />
+      )}
     </div>
   );
 };
