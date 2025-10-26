@@ -71,7 +71,7 @@ const PointsOfInterest = () => {
                 </CardHeader>
 
                 <CardContent>
-                  <p className="text-muted-foreground mb-4 text-justify">{point.description}</p>
+                  <p className="text-muted-foreground mb-4 text-justify text-sm">{point.description}</p>
 
                   <div className="flex items-center text-sm text-muted-foreground mb-4">
                     <Clock className="w-4 h-4 mr-2" />

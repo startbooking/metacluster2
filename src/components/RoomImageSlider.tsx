@@ -36,7 +36,7 @@ export const RoomImageSlider = ({ images, roomName }: RoomImageSliderProps) => {
 
   if (images.length === 0) {
     return (
-      <div className="w-full h-64 bg-gray-200 rounded-lg flex items-center justify-center">
+      <div className="w-full h-[60vh] bg-gray-200 rounded-lg flex items-center justify-center">
         <span className="text-gray-500">Sin imágenes disponibles</span>
       </div>
     );
@@ -45,7 +45,7 @@ export const RoomImageSlider = ({ images, roomName }: RoomImageSliderProps) => {
   return (
     <div className="space-y-4">
       {/* Imagen principal */}
-      <div className="relative w-full h-64 overflow-hidden rounded-lg">
+      <div className="relative w-full h-[60vh] overflow-hidden rounded-lg">
         <img 
           src={images[currentImage]} 
           alt={`${roomName} - Imagen ${currentImage + 1}`}

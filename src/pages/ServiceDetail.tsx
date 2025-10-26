@@ -78,6 +78,11 @@ const ServiceDetail = () => {
     }
   };
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" }); // Desplaza la ventana al inicio (arriba izquierda)
+  }, []); // Se ejecuta cada vez que el ID o la ruta cambian
+
+  
   return (
     <div className="min-h-screen bg-background">
       <TopBar currentLanguage={currentLanguage} onLanguageChange={setCurrentLanguage} />

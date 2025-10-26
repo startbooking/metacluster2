@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -70,6 +70,10 @@ const Institutional = () => {
       description: "Constitución oficial del Clúster de Turismo de Villavicencio con 85 empresas fundadoras."
     }
   ];
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" }); // Desplaza la ventana al inicio (arriba izquierda)
+  }, []); // Se ejecuta cada vez que el ID o la ruta cambian
 
   return (
     <div className="min-h-screen bg-background">

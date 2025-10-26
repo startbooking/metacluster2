@@ -29,6 +29,7 @@ export const FeaturedBusinessesSection = ({ language }: FeaturedBusinessesSectio
   const shuffledItems = useMemo(() => shuffleArray(vipBusinesses), [vipBusinesses]);
   const businessesToShowSlide = shuffleArray(shuffledItems).slice(0, 3);
   const handleViewDetails = (businessId: string) => {
+    console.log(businessId);
     navigate(`/featured-business/${businessId}`);
   };
 

@@ -48,7 +48,7 @@ export const RoomDetailModal = ({ room, children, onReserve }: RoomDetailModalPr
       <DialogTrigger asChild>
         {children}
       </DialogTrigger>
-      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto bg-accent/30">
+      <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="text-2xl">{roomDetails.name}</DialogTitle>
         </DialogHeader>

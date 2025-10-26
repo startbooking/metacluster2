@@ -53,7 +53,7 @@ const FeaturedBusinessDetail = () => {
   // console.log(business);
 
   // Datos de empresas destacadas - en una app real vendrían del backend
-  const featuredBusinesses: Record<string, Business> = {
+  /* const featuredBusinesses: Record<string, Business> = {
     "1": {
       id: 1,
       name: "Hotel Orinoco Plaza",
@@ -129,7 +129,7 @@ const FeaturedBusinessDetail = () => {
       description: "Aventura de avistamiento de fauna llanera en su hábitat natural. Recorrido por el bioparque con la oportunidad de observar especies nativas como chigüiros, anacondas, y aves exóticas. Experiencia educativa y emocionante para toda la familia.",
       isSponsor: true
     }
-  };
+  }; */
 
   const business = featuredBusinesses[id as string];
   console.log(business)

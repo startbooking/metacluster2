@@ -47,7 +47,7 @@ export const PointDetailModal = ({ point, onClose }: PointDetailModalProps) => {
             <img 
               src={`images/points/${point.image}`} 
               alt={point.description}
-              className="w-full h-full object-cover"
+              className="w-full h-[60vh] object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
             <div className="absolute bottom-4 left-4 text-white">
@@ -61,11 +61,9 @@ export const PointDetailModal = ({ point, onClose }: PointDetailModalProps) => {
               {point.category}
             </Badge>
             <Badge 
-              // variant={point.entry_fee ? "secondary" : "default"} 
               variant={point.entry_fee == 0 ? "secondary" : "default"}
               className="absolute top-4 right-16"
             >
-              {/* {point.entry_fee ? "Gratis" : point.entry_fee} */}
               {point.entry_fee == 0 ? "Entrada Gratis" : point.entry_fee}
             </Badge>
           </div>
@@ -75,7 +73,7 @@ export const PointDetailModal = ({ point, onClose }: PointDetailModalProps) => {
               <div className="space-y-6">
                 <div>
                   <h2 className="text-2xl font-bold mb-4">Detalles del Punto de Interes</h2>
-                  <p className="text-muted-foreground text-lg leading-relaxed text-justify">
+                  <p className="text-muted-foreground text-sm leading-relaxed text-justify">
                     {point.description}
                   </p>
                 </div>
