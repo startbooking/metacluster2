@@ -61,7 +61,7 @@ export const EventDetailModal = ({ event, onClose }: EventDetailModalProps) => {
             <img 
               src={`images/events/${event.image}`} 
               alt={event.title}
-              className="w-full h-full object-cover"
+              className="w-full h-[60vh] object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
             <div className="absolute bottom-4 left-4 text-white">
@@ -87,7 +87,7 @@ export const EventDetailModal = ({ event, onClose }: EventDetailModalProps) => {
               <div className="space-y-6">
                 <div>
                   <h2 className="text-2xl font-bold mb-4">Detalles del Evento</h2>
-                  <p className="text-muted-foreground text-lg leading-relaxed text-justify">
+                  <p className="text-sm text-muted-foreground text-lg leading-relaxed text-justify">
                     {event.description}
                   </p>
                 </div>
@@ -164,7 +164,7 @@ export const EventDetailModal = ({ event, onClose }: EventDetailModalProps) => {
                 <div className="space-y-3">
                   <Button 
                     onClick={handleReservation}
-                    className="w-full text-lg py-6"
+                    className="w-full text-md py-6"
                     size="lg"
                   >
                     Reservar {!event.isFree && `- ${event.price}`}
@@ -173,7 +173,7 @@ export const EventDetailModal = ({ event, onClose }: EventDetailModalProps) => {
                   <Button 
                     variant="outline" 
                     onClick={handleNavigation}
-                    className="w-full"
+                    className="w-full border-primary text-primary"
                   >
                     <Car className="w-4 h-4 mr-2" />
                     Cómo llegar

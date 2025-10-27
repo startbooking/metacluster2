@@ -9,16 +9,33 @@ import { TopBar } from "@/components/TopBar";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { ContactServiceModal } from "@/components/ContactServiceModal";
+import { useCachedData } from "@/hooks/useCachedData";
+import { dataService } from "@/services/dataService";
+import { ServicesData } from "@/interface/interface";
 
 const ServiceDetail = () => {
-  const { id } = useParams();
   const navigate = useNavigate();
+  const { id } = useParams();
+  // const { id: experienceIdFromUrl } = useParams<{ id: string }>();
   const [currentLanguage, setCurrentLanguage] = useState("es");
+
   const [showContactModal, setShowContactModal] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
 
+  const { data: featuredServices, isLoading } = useCachedData<ServicesData[]>({
+    cacheKey: 'featured-services',
+    fetchFn: dataService.getServices
+  });
+
+
+  const service = featuredServices?.find(
+    (exp) => exp.id == id
+  );
+
+
+
   // Datos simulados del servicio
-  const service = {
+  /* const service = {
     id: parseInt(id || "1"),
     name: "Transporte VIP Llanos",
     location: "Villavicencio",
@@ -59,7 +76,7 @@ const ServiceDetail = () => {
       requirements: "Documento de identidad requerido"
     },
     isVip: true
-  };
+  }; */
 
   const openWaze = () => {
     window.open(`https://waze.com/ul?q=${encodeURIComponent(service.location)}`, '_blank');

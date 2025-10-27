@@ -19,6 +19,7 @@ export interface Business {
   tax_percentage?: number;
   review_count?:number;
   type_category_id?:number;
+  category_id:number;
 }
 
 export interface FeaturedBusiness {

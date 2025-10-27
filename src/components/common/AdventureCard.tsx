@@ -44,7 +44,7 @@ export const AdventureCard = ({
         <img 
           src={`/images/experiences/${image}`} 
           alt={name}
-          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+          className="w-full h-[60vh] object-cover group-hover:scale-110 transition-transform duration-300"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
         <Badge className="absolute top-4 right-4 bg-primary text-primary-foreground">
@@ -71,7 +71,7 @@ export const AdventureCard = ({
       </CardHeader>
       
       <CardContent>
-        <p className="text-muted-foreground mb-4">{description}</p>
+        <p className="text-muted-foreground mb-4 text-sm">{description}</p>
         
         <div className="flex items-center gap-2 mb-4">
           <Badge className={getDifficultyColor(difficulty)}>
@@ -106,20 +106,21 @@ export const AdventureCard = ({
           <Navigation className="w-4 h-4 mr-2" />
             Ver Waze
           </Button>
-          <Button 
+          {/* <Button 
             size="sm"
             onClick={() => console.log(`Reservar ${name}`)}
             className="flex-1"
           >
             Reservar
+          </Button> */}
+          <Button 
+          onClick={() => setSelectedPoint(experience)}
+          size="sm"
+          className="flex-1">
+            Ver Detalles
           </Button>
         </div>
         
-        <Button 
-        onClick={() => setSelectedPoint(experience)}
-        variant="outline" className="w-full border-primary text-primary">
-          Ver Detalles
-        </Button>
       </CardContent>
     </Card>
   );

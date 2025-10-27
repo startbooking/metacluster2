@@ -26,18 +26,17 @@ const Services = () => {
 
   const servicesToShow = featuredServices && featuredServices.length > 0 ? featuredServices : [];
 
-
-
-  console.log(servicesToShow)
-
-
   const openWaze = (location: string) => {
     window.open(`https://waze.com/ul?q=${encodeURIComponent(location)}`, '_blank');
   };
 
-  const handleViewDetails = (serviceId: number) => {
-    navigate(`/service/${serviceId}`);
+const handleViewDetails = (id: string) => {
+    navigate(`/experiserviceences/${id}`);
   };
+
+  /* const handleViewDetails = (serviceId: number) => {
+    navigate(`/service/${serviceId}`);
+  }; */
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" }); // Desplaza la ventana al inicio (arriba izquierda)

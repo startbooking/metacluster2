@@ -50,6 +50,10 @@ export const ExperiencesSection = ({ language }: ExperiencesSectionProps) => {
     );
   }
 
+  const handleCardClick = (id: string) => {
+    navigate(`/experiences/${id}`);
+  };
+
   return (
     <section className="py-16 bg-green-100/30">
       <div className="container mx-auto px-4">
@@ -64,23 +68,27 @@ export const ExperiencesSection = ({ language }: ExperiencesSectionProps) => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {serviceToShowSlide?.map((experience) => (
-            <AdventureCard 
-              key={experience.id}
-              id= {experience.id}
-              image= {experience.image}
-              name= {experience.name}
-              category= {experience.category}
-              rating= {experience.rating}
-              name= {experience.name}
-              price={experience.price}
-              duration= {experience.duration}
-              max_people= {experience.max_people}
-              description= {experience.description}
-              price= {experience.price}
-
-            
-            />
-            
+            <div 
+                  key={experience.id} 
+                  onClick={() => handleCardClick(experience.id)} // Manejador de click
+                  className="cursor-pointer transition-shadow duration-300 hover:shadow-xl rounded-lg"
+              >
+                <AdventureCard 
+                  // ... todas las props de AdventureCard se pasan aquí
+                  key = {experience.id}
+                  id={experience.id}
+                  image={experience.image}
+                  name={experience.name}
+                  price={experience.price}
+                  category={experience.category}
+                  rating={experience.rating}
+                  difficulty={experience.difficulty}
+                  location={experience.location}
+                  duration={experience.duration}
+                  max_people={experience.max_people}
+                  experience={experience}
+                />
+              </div>
           ))}
         </div>
 

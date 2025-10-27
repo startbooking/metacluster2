@@ -20,24 +20,17 @@ export const FeaturedBusinessesSection = ({ language }: FeaturedBusinessesSectio
     fetchFn: dataService.getBusinesses
   });
 
-
-
   const businessesToShow = featuredBusinesses && featuredBusinesses.length > 0 ? featuredBusinesses : [];
   
   const vipBusinesses = businessesToShow.filter(
     (business) => business.is_vip === 1
   );
 
-
-  console.log(vipBusinesses)
   const shuffledItems = useMemo(() => shuffleArray(vipBusinesses), [vipBusinesses]);
   const businessesToShowSlide = shuffleArray(shuffledItems).slice(0, 3);
-  
-  // Refactorización: La función ahora acepta el objeto Business completo
-  // y lo pasa en el estado de navegación.
-  const handleViewDetails = (business: Business) => {
-    console.log(business.id);
-    navigate(`/featured-business/${business.id}`, { state: { business } });
+  const handleViewDetails = (businessId: string) => {
+    // console.log(businessId);
+    navigate(`/featured-business/${businessId}`);
   };
 
   if (isLoading) {
@@ -92,7 +85,7 @@ export const FeaturedBusinessesSection = ({ language }: FeaturedBusinessesSectio
               price={business.price}
               taxes={business.taxes}
               tax_percentage={business.tax_percentage}
-              onViewDetails={() => handleViewDetails(business)}
+              onViewDetails={handleViewDetails}
             />
           ))}
         </div>
